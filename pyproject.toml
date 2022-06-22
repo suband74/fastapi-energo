@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "fastapi-energo"
+version = "0.1.0"
+description = ""
+authors = ["suband74 <suband@mail.ru>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = {extras = ["all"], version = "^0.78.0"}
+aioredis = "^2.0.1"
+asyncpg = "^0.25.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+ipython = "^8.3.0"
+jupyter = "^1.0.0"
+black = "^22.3.0"
+flake8 = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
