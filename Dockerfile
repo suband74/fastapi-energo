@@ -10,16 +10,7 @@ RUN curl -sSL https://install.python-poetry.org | POETRY_HOME=/opt/poetry python
 
 COPY ./pyproject.toml ./poetry.lock* /code/
 
-# In production it may be better to avoid Poetry dependency
-# and use exported requirements.txt as a source for Pip.
-# Follow for example: https://fastapi.tiangolo.com/deployment/docker/#docker-image-with-poetry 
 RUN poetry install
-
-# RUN apt-get update && apt-get install -y \
-#   postgresql-client \
-#   redis-tools \
-#   && rm -rf /var/lib/apt/lists/*
-
 
 COPY . /code
 ENV PYTHONPATH=/code/src
