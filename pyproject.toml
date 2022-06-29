@@ -9,6 +9,10 @@ python = "^3.10"
 fastapi = {extras = ["all"], version = "^0.78.0"}
 aioredis = "^2.0.1"
 asyncpg = "^0.25.0"
+SQLAlchemy = "^1.4.39"
+alembic = "^1.8.0"
+psycopg2-binary = "^2.9.3"
+python-dotenv = "^0.20.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

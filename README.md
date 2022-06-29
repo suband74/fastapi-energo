@@ -28,7 +28,7 @@ https://github.com/suband74/fastapi-energo
 docker-compose up
 ```
 
-4. Сервис доступен по адресу:
+4. Интерактивная документация к сервису доступна по адресу:
 
 ```
 http://127.0.0.1:8000/docs

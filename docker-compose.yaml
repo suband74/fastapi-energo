@@ -1,15 +1,17 @@
-version: "3"
+version: "2.1"
 services:
   web:
     build: .
-    command: bash -c "uvicorn fastapi_energo.main:app --reload --host 0.0.0.0 --port 8000"
+    command: bash -c "alembic upgrade head && uvicorn fastapi_energo.main:app --reload --host 0.0.0.0 --port 8000"
     volumes:
       - .:/code
     ports:
       - "8000:8000"
     depends_on:
-      - devices_db
-      - anagrams_db
+      devices_db:
+        condition: service_healthy
+      anagrams_db:
+        condition: service_healthy
 
   devices_db:
     image: postgres
@@ -17,6 +19,16 @@ services:
       - ./data/devices:/var/lib/postgresql/data
     environment:
       - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   anagrams_db:
     image: redis
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 1s
+      timeout: 3s
+      retries: 30
